@@ -20,6 +20,7 @@ export default function SignUp() {
     }
     try {
       setLoading(true); //bắt đầu loggin
+
       setErrorMessage(null);
       const res = await fetch("/api/auth/signup", {
         method: "POST",
@@ -46,7 +47,7 @@ export default function SignUp() {
 
   return (
     //min-h-screen: độ cao màn hình 100%
-    <div className="min-h-screen mt-20">
+    <div className="min-h-min mt-10 mb-10" >
       <div
         className="flex p-3 max-w-3xl mx-auto flex-col 
         md:items-center md:flex-row gap-4"
