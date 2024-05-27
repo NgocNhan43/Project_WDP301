@@ -34,7 +34,7 @@ export default function SignUp() {
       setFormData({}); //xóa dữ liệu form sau khi đăng ký thành công
       
       if (res.ok) {
-        navigate("/sign-in");
+        navigate("/sign-in"); //điều hướng đến trang đăng nhập
       }
     } catch (error) {
       setErrorMessage(error.message);

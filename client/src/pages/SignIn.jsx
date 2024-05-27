@@ -7,22 +7,22 @@ export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.username || !formData.email || !formData.password) {
+
+    if (!formData.email || !formData.password) {
       return setErrorMessage("Please fill out all fields.");
     }
     try {
       setLoading(true); //bắt đầu loggin
 
       setErrorMessage(null);
-      const res = await fetch("/api/auth/signup", {
+      const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -32,22 +32,20 @@ export default function SignIn() {
         return setErrorMessage(data.message);
       }
       setFormData({}); //xóa dữ liệu form sau khi đăng ký thành công
-      
+
       if (res.ok) {
-        navigate("/");
+        navigate("/"); // điều hướng đến trang chủ
       }
     } catch (error) {
       setErrorMessage(error.message);
-    
-    }finally{
+    } finally {
       setLoading(false);
     }
-    
   };
 
   return (
     //min-h-screen: độ cao màn hình 100%
-    <div className="min-h-min mt-10 mb-10" >
+    <div className="min-h-min mt-10 mb-10">
       <div
         className="flex p-3 max-w-3xl mx-auto flex-col 
         md:items-center md:flex-row gap-4"
@@ -69,7 +67,6 @@ export default function SignIn() {
         {/*right */}
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-           
             <div>
               <Label value="Your email" />
               <TextInput
