@@ -5,14 +5,17 @@ import {
   Dropdown,
   TextInput,
   Avatar,
-  DropdownDivider,
-} from "flowbite-react";
+   } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom"; //nhấn vào sẽ reload về trang chủ
 import { AiOutlineSearch } from "react-icons/ai";
-import { FaMoon } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import{toggleTheme} from '../redux/theme/themeSlice'
+
 export default function Header() {
+  const { theme } = useSelector((state) => state.theme);
   const path = useLocation().pathname;
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   return (
     /* self-center: tự động căn giữa
@@ -48,8 +51,9 @@ export default function Header() {
       </Button>
 
       <div className="flex gap-2 md:order-2">
-        <Button className="w-12 h-10 hidden sm:inline" color="gray" pill>
-          <FaMoon />
+        <Button className="w-12 h-10 hidden sm:inline" color="gray" pill onClick={()=> dispatch(toggleTheme())}>
+          
+        {theme === 'light' ? <FaSun /> : <FaMoon />}
         </Button>
         {currentUser ? (
           <Dropdown
@@ -69,7 +73,7 @@ export default function Header() {
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
             <Dropdown.Divider />
-            <Dropdown.Item >Sign out</Dropdown.Item>
+            <Dropdown.Item>Sign out</Dropdown.Item>
           </Dropdown>
         ) : (
           <Link to="/sign-in">
