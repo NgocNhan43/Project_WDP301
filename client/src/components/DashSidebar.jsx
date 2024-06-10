@@ -19,7 +19,7 @@ export default function DashSidebar() {
     <Sidebar className="w-full md:w-56">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-
+          <Link>
           <Sidebar.Item
             active ={tab ==='profile'}
             icon={HiUser}
@@ -29,6 +29,9 @@ export default function DashSidebar() {
           >
             Profile
           </Sidebar.Item>
+
+          </Link>
+          
 
           <Sidebar.Item
             
