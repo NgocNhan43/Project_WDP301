@@ -8,7 +8,7 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import { app } from '../firebase';
-import { useState } from 'react';
+import { useState, useRef  } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +19,8 @@ export default function CreatePost() {
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
+//quillref
+  const quillRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -143,6 +145,7 @@ export default function CreatePost() {
           />
         )}
         <ReactQuill
+          ref={quillRef}
           theme='snow'
           placeholder='Write something...'
           className='h-72 mb-12'
