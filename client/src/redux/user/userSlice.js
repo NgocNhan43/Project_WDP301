@@ -4,7 +4,7 @@ const initialState = {
   //chứa trạng thái ban đầu của user
   currentUser: null, //chứa thông tin của người dùng hiện tại
   error: null, // chứa thông báo lỗi phát sinh nếu có
-  loading: false, //xác định trạng thái đang tải false: trạng thái chờ
+ loading: false, //xác định trạng thái đang tải false: trạng thái chờ
   // True: trạng thái thành công
 };
 
@@ -26,7 +26,6 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    //update
     updateStart: (state) => {
       state.loading = true;
       state.error = null;
@@ -40,7 +39,6 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    //delete account user
     deleteUserStart: (state) => {
       state.loading = true;
       state.error = null;
@@ -74,4 +72,5 @@ export const {
   deleteUserFailure,
   signoutSuccess,
 } = userSlice.actions;
+
 export default userSlice.reducer;
